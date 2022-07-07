@@ -20,6 +20,12 @@ yarn build
 yarn lint
 ```
 
+### Run on Docker
+```
+docker build -t docker-product-management-vuejs2 .
+docker run -p 8080:8080 --name  product-management-vuejs2 docker-product-management-vuejs2
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
