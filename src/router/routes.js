@@ -1,11 +1,21 @@
 import homePage from "../pages/Home.vue";
-import { DOMAIN_TITLE } from "../../.env";
-
+import loginPage from "../pages/Login.vue";
+import { auth } from "@/middlewares";
+console.log("env33", JSON.stringify(process.env));
 export const routes = [
   {
     path: "/",
     name: "index",
     component: homePage,
-    meta: { title: `${DOMAIN_TITLE} | home` },
+    meta: {
+      title: `${process.env.VUE_APP_DOMAIN_TITLE} | home`,
+      middleware: auth,
+    },
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: loginPage,
+    meta: { title: `${process.env.VUE_APP_DOMAIN_TITLE} | login` },
   },
 ];
