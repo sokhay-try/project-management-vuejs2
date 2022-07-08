@@ -72,10 +72,11 @@ export default {
       this.activeId = id;
     },
     async onLogout() {
+      this.$router.push({ name: "login" });
+      location.reload();
       await this.$store.dispatch({
         type: "auth/logout",
       });
-      location.reload();
     },
   },
   computed: {
