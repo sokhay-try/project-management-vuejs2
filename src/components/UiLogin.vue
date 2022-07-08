@@ -34,6 +34,7 @@
                     <v-text-field
                       v-model="loginUsername"
                       :rules="loginUsernameRules"
+                      :error-messages="usernameError"
                       label="Username"
                       required
                     ></v-text-field>
@@ -42,12 +43,11 @@
                     <v-text-field
                       v-model="loginPassword"
                       :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                      :rules="[rules.required, rules.min]"
+                      :rules="loginPasswordRules"
+                      :error-messages="passwordError"
                       :type="show1 ? 'text' : 'password'"
                       name="input-10-1"
                       label="Password"
-                      hint="At least 8 characters"
-                      counter
                       @click:append="show1 = !show1"
                     ></v-text-field>
                   </v-col>
@@ -69,7 +69,6 @@
                     <v-btn
                       x-large
                       block
-                      :disabled="!valid"
                       color="success"
                       @click="validate"
                     > Login </v-btn>
@@ -99,20 +98,11 @@ export default {
     tabs: [{ name: "Login", icon: "mdi-account" }],
     valid: true,
     loginPassword: "",
+    usernameError: "",
+    passwordError: "",
     loginUsername: "",
-    loginUsernameRules: [
-      (v) => !!v || "Required",
-      (v) => {
-        if (v.length < 2) {
-          return "Username should be more than 1 characters";
-        }
-        return true;
-      },
-    ],
-    rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => (v && v.length >= 8) || "Min 8 characters",
-    },
+    loginUsernameRules: [(v) => !!v || "Required"],
+    loginPasswordRules: [(v) => !!v || "Required"],
   }),
 
   props: {
@@ -123,7 +113,20 @@ export default {
 
   methods: {
     validate() {
-      if (this.$refs.loginForm.validate()) {
+      this.usernameError =
+        this.loginUsername != process.env.VUE_APP_USERNAME
+          ? "Incorrect username"
+          : "";
+      this.passwordError =
+        this.loginPassword != process.env.VUE_APP_PASSWORD
+          ? "Incorrect password"
+          : "";
+
+      if (
+        this.$refs.loginForm.validate() &&
+        !this.usernameError &&
+        !this.passwordError
+      ) {
         const data = {
           username: this.loginUsername,
           password: this.loginPassword,
