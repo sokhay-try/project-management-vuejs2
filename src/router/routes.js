@@ -1,7 +1,6 @@
 import homePage from "../pages/Home.vue";
 import loginPage from "../pages/Login.vue";
 import { auth } from "@/middlewares";
-console.log("env33", JSON.stringify(process.env));
 export const routes = [
   {
     path: "/",
