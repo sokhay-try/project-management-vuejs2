@@ -1,3 +1,4 @@
+import { initialAuthState } from "./authState";
 export default {
   LOGIN(state, data) {
     state.authenticated = true;
@@ -5,9 +6,10 @@ export default {
   },
   LOGOUT(state) {
     state.authenticated = false;
-    state.user = {
-      username: "",
-      password: "",
-    };
+  },
+  RESET_STATE(state) {
+    const initial = initialAuthState();
+    state.authenticated = initial.authenticated;
+    state.user = initial.user;
   },
 };

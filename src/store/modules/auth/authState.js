@@ -1,7 +1,13 @@
+export const initialAuthState = () => {
+  return {
+    authenticated: false,
+    user: {
+      username: "",
+      password: "",
+    },
+  };
+};
+
 export default {
-  authenticated: false,
-  user: {
-    username: "",
-    password: "",
-  },
+  ...initialAuthState(),
 };

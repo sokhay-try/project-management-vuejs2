@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { resetAllStates } from "@/store/resetAllState";
 export default {
   name: "SideBar",
   components: {},
@@ -73,10 +74,10 @@ export default {
     },
     async onLogout() {
       this.$router.push({ name: "login" });
-      location.reload();
       await this.$store.dispatch({
         type: "auth/logout",
       });
+      await resetAllStates(this.$store);
     },
   },
   computed: {

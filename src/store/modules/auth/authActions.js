@@ -5,4 +5,7 @@ export default {
   logout({ commit }) {
     return commit("LOGOUT");
   },
+  resetState({ commit }) {
+    return commit("RESET_STATE");
+  },
 };

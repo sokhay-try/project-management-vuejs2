@@ -1,3 +1,5 @@
+import { initialProductState } from "./productState";
+
 export default {
   ADD_PRODUCT(state, data) {
     state.products.push(data.payload);
@@ -21,5 +23,9 @@ export default {
         return p;
       }
     });
+  },
+  RESET_STATE(state) {
+    const initial = initialProductState();
+    state.products = initial.products;
   },
 };

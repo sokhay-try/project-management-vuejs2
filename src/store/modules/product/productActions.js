@@ -8,4 +8,7 @@ export default {
   removeProduct({ commit }, payload) {
     return commit("REMOVE_PRODUCT", payload);
   },
+  resetState({ commit }) {
+    return commit("RESET_STATE");
+  },
 };
