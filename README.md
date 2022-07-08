@@ -30,6 +30,6 @@ docker run -p 8080:8080 --name  product-management-vuejs2 docker-product-managem
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Demo Link
-username: admin
-password: admin
+username: admin <br />
+password: admin <br />
 Link [https://product-management-vue2.netlify.app/](https://product-management-vue2.netlify.app/).
